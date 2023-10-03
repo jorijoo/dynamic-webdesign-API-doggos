@@ -52,22 +52,24 @@ export default function BreedSearch({ breeds }) {
     }
 
     return (
-        <div className='container-fluid row'>
-            <div className='row' style={{ backgroundColor: "lightgreen" }}>
-                <form onSubmit={(e) => e.preventDefault}>
-                    <label className='row' htmlFor='breed-search'>
-                        Search for dog breeds
-                    </label>
-                    <input
-                        name="breed-search"
-                        className='row'
-                        type='text'
-                        value={searchKeyword}
-                        onChange={handleSearch}
-                    />
-                </form>
+        <div>
+            <div className='row local-search p-2' style={{ backgroundColor: "lightgreen" }}>
+                <div>
+                    <form className='ps-2' onSubmit={(e) => e.preventDefault}>
+                        <label className='row' htmlFor='breed-search'>
+                            Search for dog breeds
+                        </label>
+                        <input
+                            name="breed-search"
+                            className='row'
+                            type='text'
+                            value={searchKeyword}
+                            onChange={handleSearch}
+                        />
+                    </form>
+                </div>
             </div>
-            <div className='row' style={{ backgroundColor: "lightblue" }}>
+            <div className='row local-search-results p-2' style={{ backgroundColor: "lightblue" }}>
                 <div>
                     <h1>{searchSuccess[0]}</h1>
                     <div>{searchSuccess[1]}</div>
@@ -76,6 +78,6 @@ export default function BreedSearch({ breeds }) {
                     <DogBreeds breeds={displayBreeds} isLink={true} />
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

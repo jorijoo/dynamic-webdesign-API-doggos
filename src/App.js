@@ -1,8 +1,8 @@
 import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import DogBreeds from './components/DogBreeds';
 import BreedSearch from './components/BreedSearch';
+import DogImage from './components/DogImage';
 
 function App() {
     const dogAPI = 'https://dog.ceo/api/breeds/'
@@ -21,9 +21,9 @@ function App() {
     }
 
     return (
-        <div className="container-fluid row">
+        <div className='container'>
             <BreedSearch breeds={breeds} />
-            <DogBreeds breeds={breeds} />
+            <DogImage />
         </div>
     );
 }

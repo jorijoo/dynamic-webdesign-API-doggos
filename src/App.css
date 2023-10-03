@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.local-search {
+    height: 5em;
+}
+
+.local-search-results {
+    height: 15em;
+}
+
+.local-dog-image {
+    max-height: 200px;
+}
