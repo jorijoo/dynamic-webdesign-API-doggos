@@ -39,12 +39,26 @@
 
 .local-search {
     height: 5em;
+    overflow: hidden;
+}
+
+.local-search input {
+    width: 100%
 }
 
 .local-search-results {
-    height: 15em;
+    min-height: 15em;
 }
 
 .local-dog-image {
-    max-height: 200px;
+    width: 100%;
+    /* max-width: 50vw; */
+}
+
+#local-search-results li {
+    display: inline-block;
+}
+
+h1 {
+    font-size: 1.8vw;
 }

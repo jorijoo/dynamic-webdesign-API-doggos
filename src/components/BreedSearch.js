@@ -1,83 +1,70 @@
 import React, { useEffect, useState } from 'react'
-import DogBreeds from './DogBreeds'
+import axios from 'axios'
 
-export default function BreedSearch({ breeds }) {
-    const initSearchResults = [
-        'brabancon',
-        'airedale',
-        'corgi',
-        'boxer',
-        'poodle'
-    ]
-    const searchSuccessOutput = [
-        [
-            `Search found no matches with your keywords.`,
-            'Showing 5 examples:'
-        ],
-        [
-            'Search found matches with your keywords.',
-            'Showing 5 top results:'
-        ]
-    ]
+function BreedSearch({ resetToggle, setResetToggle, dogAPI, breeds, setBreeds, setSearchOutput }) {
 
-    const [displayBreeds, setDisplayBreeds] = useState(initSearchResults)
-    const [searchKeyword, setSearchKeyword] = useState('')
-    const [searchSuccess, setSearchSuccess] = useState(searchSuccessOutput[0])
-    console.log(searchSuccess[1])
+    const [searchInput, setSearchInput] = useState('')
 
-    const handleSearch = (e) => {
-        let results = []
+    useEffect(() => fetchBreeds(), [])
+    useEffect(() => { setSearchInput('') }, [resetToggle])
+
+    // Fetch breedlist with axios
+    const fetchBreeds = () => {
+        axios.get(`${dogAPI}breeds/list/all`)
+            .then((res) => {
+                const resBreeds = Object.keys(res.data.message)
+                setBreeds(resBreeds)
+            })
+            .catch(error => console.error(`Breed list fetch error: ${error}`))
+    }
+
+
+    // Check input for real changes
+    const handleInput = (e) => {
         const textInput = e.target.value.toLowerCase().replace(/[^a-z]/, '')
-        setSearchKeyword(textInput)
 
-        for (const i of [...breeds]) {
+        setSearchInput(textInput)
+        textInput !== searchInput && handleSearch(textInput)
+    }
+
+    // Match search to breed list
+    const handleSearch = (textInput) => {
+        let results = []
+
+        for (const i of breeds) {
             if (textInput) {
                 const row = i.toLowerCase()
-                if (row.includes(textInput)) {
-                    results.push(row)
-                    setSearchSuccess(searchSuccessOutput[1])
-                }
+                row.includes(textInput) && results.push(row)
             }
         }
 
-        if (!results[0]) {
-            results = (searchSuccess === searchSuccessOutput[0])
-                ? displayBreeds
-                : [...breeds].sort(() => 0.5 - Math.random())
-            setSearchSuccess(searchSuccessOutput[0])
-        }
-
-        results = results.slice(0, 5)
-        setDisplayBreeds(results)
+        setSearchOutput(results)
     }
 
     return (
-        <div>
-            <div className='row local-search p-2' style={{ backgroundColor: "lightgreen" }}>
-                <div>
-                    <form className='ps-2' onSubmit={(e) => e.preventDefault}>
-                        <label className='row' htmlFor='breed-search'>
-                            Search for dog breeds
-                        </label>
-                        <input
-                            name="breed-search"
-                            className='row'
-                            type='text'
-                            value={searchKeyword}
-                            onChange={handleSearch}
-                        />
-                    </form>
+        <form className='ps-2' onSubmit={(e) => e.preventDefault()}>
+            <div className="row">
+                <div className="col">
+                    <label className='row' htmlFor='breed-search'>
+                        Search:
+                    </label>
+                </div>
+                <div className="col text-end">
+                    <a type="button" onClick={() => setResetToggle(!resetToggle)}>[reset]</a>
                 </div>
             </div>
-            <div className='row local-search-results p-2' style={{ backgroundColor: "lightblue" }}>
-                <div>
-                    <h1>{searchSuccess[0]}</h1>
-                    <div>{searchSuccess[1]}</div>
-                </div>
-                <div>
-                    <DogBreeds breeds={displayBreeds} isLink={true} />
-                </div>
+            <div className="row">
+                <input
+                    id="breed-search"
+                    className='row'
+                    type='text'
+                    value={searchInput}
+                    onChange={handleInput}
+                />
             </div>
-        </div >
+        </form>
     )
 }
+
+
+export default BreedSearch;

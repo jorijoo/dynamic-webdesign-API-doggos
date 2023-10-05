@@ -1,31 +1,38 @@
-import React from 'react'
+function DogBreeds({ breeds, setDogBreed, reloadToggle, setReloadToggle }) {
 
-export default function DogBreeds({ breeds }) {
+    const handleClick = (selectedBreed) => {
+        setDogBreed(selectedBreed)
+        setReloadToggle(!reloadToggle)
+    }
 
-    const breedsOut = (breeds) => {
+    const breedsOut = () => {
         if (breeds.length > 0) {
             return (
                 <>
-                    <ul>
-                        {breeds.map((breed, index) => {
-                            // console.log(breed)
-                            return (
-                                <li key={index}>{breed}</li>
-                            )
-                        })}
-                    </ul>
+                    {breeds.map((breed, index) => {
+                        return (
+                            <li key={index}>
+                                <a role="button" onClick={() => handleClick(breed)}>
+                                    [{breed}]
+                                </a>
+                                &nbsp;
+                            </li>
+                        )
+                    })}
                 </>
             )
         } else {
             return (
-                <li>Breed list is empty</li>
+                <li>[no results]</li>
             )
         }
     }
 
     return (
-        <>
-            {breedsOut(breeds)}
-        </>
+        <ul id='local-search-results'>
+            {breedsOut()}
+        </ul>
     )
 }
+
+export default DogBreeds;
