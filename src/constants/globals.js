@@ -3,8 +3,8 @@
 //  Copyright Jori Hiltunen 2023
 //
 
-const GLOBAL = {
+const GLOBALS = {
     DOG_API: 'https://dog.ceo/api/'
 }
 
-export default GLOBAL
+export default GLOBALS

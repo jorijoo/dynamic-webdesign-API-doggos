@@ -5,9 +5,16 @@ import GLOBALS from '../constants/globals'
 import errorImage from '../images/error.png'
 
 function DogImage({ dogBreed, reloadToggle }) {
-    
-    const dogQuery = (dogBreed != 'random')
-        ? `${GLOBALS.DOG_API}breed/${dogBreed}/images/random`
+
+    const subBreedCheck = () => {
+        const result = (dogBreed[1].length)
+            ? `/${dogBreed[1]}`
+            : ''
+        return result
+    }
+
+    const dogQuery = (dogBreed[0] != 'random')
+        ? `${GLOBALS.DOG_API}breed/${dogBreed[0]}${subBreedCheck()}/images/random`
         : `${GLOBALS.DOG_API}breeds/image/random`
 
     const [dogImage, setDogImage] = useState('')
@@ -31,6 +38,7 @@ function DogImage({ dogBreed, reloadToggle }) {
                 <img
                     className='local-dog-image'
                     src={dogImage}
+                    onError={() => setDogImage(errorImage)}
                     alt={LOCALIZATION.DOG_IMAGE.ALT_TEXT}
                 />
             </a>

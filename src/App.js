@@ -8,14 +8,14 @@ import LOCALIZATION from './constants/en_default';
 function App() {
 
     const [searchOutput, setSearchOutput] = useState([])
-    const [dogBreed, setDogBreed] = useState('random')
+    const [dogBreed, setDogBreed] = useState(['random',[]])
     const [resetToggle, setResetToggle] = useState(true)
     const [reloadToggle, setReloadToggle] = useState(true)
     
     useEffect(() => {resetSearch()}, [resetToggle])
    
     const resetSearch = () => {
-        setDogBreed('random')
+        setDogBreed(['random', []])
         setSearchOutput([])
     }
 
@@ -39,7 +39,7 @@ function App() {
             <div className='row local-search-results'>
                 <div className='col-12'>
                     <h1>
-                        {LOCALIZATION.APP.IMAGE_HEADING(dogBreed)}
+                        {LOCALIZATION.APP.IMAGE_HEADING(`${dogBreed[1]} ${dogBreed[0]}`)}
                     </h1>
                 </div>
                 <div className='col-12'>

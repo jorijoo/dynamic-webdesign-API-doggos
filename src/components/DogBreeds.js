@@ -9,11 +9,15 @@ function DogBreeds({ breeds, setDogBreed, reloadToggle, setReloadToggle }) {
         if (breeds.length > 0) {
             return (
                 <>
-                    {breeds.map((breed, index) => {
+                    {breeds.map(([breed, subBreed], index) => {
+                        const name = (subBreed.length)
+                            ? `${breed}: ${subBreed}`
+                            : breed
+
                         return (
                             <li key={index}>
-                                <a role="button" onClick={() => handleClick(breed)}>
-                                    [{breed}]
+                                <a role="button" onClick={() => handleClick([breed, subBreed])}>
+                                    [{name}]
                                 </a>
                                 &nbsp;
                             </li>

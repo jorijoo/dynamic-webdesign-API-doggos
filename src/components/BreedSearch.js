@@ -15,8 +15,7 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
     const fetchBreeds = () => {
         axios.get(`${GLOBALS.DOG_API}breeds/list/all`)
             .then((res) => {
-                const resBreeds = Object.keys(res.data.message)
-                setBreeds(resBreeds)
+                setBreeds(res.data.message)
             })
             .catch(error => console.error(`${LOCALIZATION.BREED_SEARCH.FETCH_ERROR} ${error}`))
     }
@@ -32,16 +31,23 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
 
     // Match search to breed list
     const handleSearch = (textInput) => {
+        let breedsAndSubBreeds = Object.keys(breeds).map(breed => [breed.toLowerCase(), []])
         let results = []
-
-        for (const i of breeds) {
-            if (textInput) {
-                const row = i.toLowerCase()
-                row.includes(textInput) && results.push(row)
+        
+        for (const [breed, subBreeds] of Object.entries(breeds)) {
+            if (subBreeds.length) {
+                const subBreed = subBreeds.map((subBreed) => [breed, subBreed.toLowerCase()])
+                breedsAndSubBreeds = breedsAndSubBreeds.concat(subBreed)
             }
         }
 
-        setSearchOutput(results)
+        for (const breed of breedsAndSubBreeds) {
+            if (textInput) {
+                breed[0].includes(textInput) && results.push(breed)
+            }
+        }
+
+        setSearchOutput(results.sort())
     }
 
     return (
@@ -68,6 +74,5 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
         </form>
     )
 }
-
 
 export default BreedSearch;
