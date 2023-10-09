@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import LOCALIZATION from '../constants/en_default'
+import GLOBALS from '../constants/globals'
 
-function BreedSearch({ resetToggle, setResetToggle, dogAPI, breeds, setBreeds, setSearchOutput }) {
+function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
 
     const [searchInput, setSearchInput] = useState('')
+    const [breeds, setBreeds] = useState([])
 
     useEffect(() => fetchBreeds(), [])
     useEffect(() => { setSearchInput('') }, [resetToggle])
 
     // Fetch breedlist with axios
     const fetchBreeds = () => {
-        axios.get(`${dogAPI}breeds/list/all`)
+        axios.get(`${GLOBALS.DOG_API}breeds/list/all`)
             .then((res) => {
                 const resBreeds = Object.keys(res.data.message)
                 setBreeds(resBreeds)
             })
-            .catch(error => console.error(`Breed list fetch error: ${error}`))
+            .catch(error => console.error(`${LOCALIZATION.BREED_SEARCH.FETCH_ERROR} ${error}`))
     }
 
 
