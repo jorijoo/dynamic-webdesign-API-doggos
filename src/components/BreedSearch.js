@@ -20,7 +20,6 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
             .catch(error => console.error(`${LOCALIZATION.BREED_SEARCH.FETCH_ERROR} ${error}`))
     }
 
-
     // Check input for real changes
     const handleInput = (e) => {
         const textInput = e.target.value.toLowerCase().replace(/[^a-z]/, '')
@@ -33,7 +32,7 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
     const handleSearch = (textInput) => {
         let breedsAndSubBreeds = Object.keys(breeds).map(breed => [breed.toLowerCase(), []])
         let results = []
-        
+
         for (const [breed, subBreeds] of Object.entries(breeds)) {
             if (subBreeds.length) {
                 const subBreed = subBreeds.map((subBreed) => [breed, subBreed.toLowerCase()])
@@ -41,9 +40,9 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
             }
         }
 
-        for (const breed of breedsAndSubBreeds) {
+        for (const breedArray of breedsAndSubBreeds) {
             if (textInput) {
-                breed[0].includes(textInput) && results.push(breed)
+                for (const breedName of breedArray) breedName.includes(textInput) && results.push(breedArray)
             }
         }
 

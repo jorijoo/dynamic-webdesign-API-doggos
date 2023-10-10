@@ -18,16 +18,20 @@ function DogImage({ dogBreed, reloadToggle }) {
         : `${GLOBALS.DOG_API}breeds/image/random`
 
     const [dogImage, setDogImage] = useState('')
+    const [imageVisibility, setImageVisibility] = useState(true)
 
     useEffect(() => fetchImage(), [reloadToggle])
 
     const fetchImage = () => {
+        setImageVisibility(false)
         axios.get(dogQuery)
             .then((res) => {
                 const resDogImage = res.data.message
+                setImageVisibility(true)
                 setDogImage(resDogImage)
             })
             .catch(() => {
+                setImageVisibility(true)
                 setDogImage(errorImage)
             })
     }
@@ -36,7 +40,7 @@ function DogImage({ dogBreed, reloadToggle }) {
         <div className="col text-center">
             <a onClick={fetchImage}>
                 <img
-                    className='local-dog-image'
+                    className={`local-dog-image ${(imageVisibility) ? 'visible' : 'hidden'}`}
                     src={dogImage}
                     onError={() => setDogImage(errorImage)}
                     alt={LOCALIZATION.DOG_IMAGE.ALT_TEXT}
