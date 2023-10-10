@@ -7,4 +7,6 @@ const GLOBALS = {
     DOG_API: 'https://dog.ceo/api/'
 }
 
+Object.freeze(GLOBALS)
+
 export default GLOBALS

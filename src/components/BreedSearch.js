@@ -1,7 +1,21 @@
+//  FETCH BREEDS AND SEARCH
+//
+//  Copyright Jori Hiltunen 2023
+//
+
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import LOCALIZATION from '../constants/en_default'
 import GLOBALS from '../constants/globals'
+
+/**
+ * Add search form and functionality:
+ * Fetch breeds and sub-breeds in an array. Search that array for input.
+ * @param {boolean} resetToggle         Reset value for callback toggling
+ * @param {function} setResetToggle     Reset toggle callback
+ * @param {function} setSearchOutput    Search output callback
+ * @returns {React.Component}           Text-input for search and reset-button inside a <form>
+ */
 
 function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
 

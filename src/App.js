@@ -1,3 +1,8 @@
+//  DOG.CEO API INTERFACE
+//  OAMK assignment
+//
+//  Copyright Jori Hiltunen 2023
+
 import './App.css';
 import { useEffect, useState } from 'react';
 import BreedSearch from './components/BreedSearch';
@@ -8,12 +13,13 @@ import LOCALIZATION from './constants/en_default';
 function App() {
 
     const [searchOutput, setSearchOutput] = useState([])
-    const [dogBreed, setDogBreed] = useState(['random',[]])
+    const [dogBreed, setDogBreed] = useState(['random', []])
+    // Set toggles to apply refreshing of components from children components
     const [resetToggle, setResetToggle] = useState(true)
     const [reloadToggle, setReloadToggle] = useState(true)
-    
-    useEffect(() => {resetSearch()}, [resetToggle])
-   
+
+    useEffect(() => { resetSearch() }, [resetToggle])
+
     const resetSearch = () => {
         setDogBreed(['random', []])
         setSearchOutput([])

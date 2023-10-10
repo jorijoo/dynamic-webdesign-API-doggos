@@ -1,3 +1,17 @@
+//  DOG BREED LOOP AND LINK LIST
+//
+//  Copyright Jori Hiltunen 2023
+//
+
+/**
+ * Loop through dog breeds from search and create a list of links
+ * @param {array} breeds                Array of breeds from search
+ * @param {function} setDogBreed        Set breed for displaying the breed callback
+ * @param {boolean} reloadToggle        Reload value for callback toggling
+ * @param {function} setReloadToggle    Reload dog image callback
+ * @returns {React.Component}           Breeds as a list of links
+ */
+
 function DogBreeds({ breeds, setDogBreed, reloadToggle, setReloadToggle }) {
 
     const handleClick = (selectedBreed) => {

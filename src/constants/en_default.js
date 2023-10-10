@@ -11,8 +11,7 @@ const LOCALIZATION = {
         FETCH_ERROR: 'Breed list fetch error:'
     },
     DOG_IMAGE: {
-        ALT_TEXT: 'A dog image loaded from the dog.ceo API.',
-        FETCH_ERROR: 'Dog image fetch error:'
+        ALT_TEXT: 'A dog image loaded from the dog.ceo API.'
     }
 }
 
