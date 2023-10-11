@@ -64,25 +64,34 @@ function BreedSearch({ resetToggle, setResetToggle, setSearchOutput }) {
     }
 
     return (
-        <form className='ps-2' onSubmit={(e) => e.preventDefault()}>
+        <form className='' onSubmit={(e) => e.preventDefault()}>
             <div className="row">
                 <div className="col">
-                    <label className='row' htmlFor='breed-search'>
+                    <label className='row fs-3 fw-bold' htmlFor='breed-search'>
                         Search:
                     </label>
                 </div>
-                <div className="col text-end">
-                    <a type="button" onClick={() => setResetToggle(!resetToggle)}>[reset]</a>
+                <div className="col fs-3 text-end">
+                    [
+                    <a
+                        className='text-decoration-underline'
+                        type="button"
+                        onClick={() => setResetToggle(!resetToggle)}>
+                        reset
+                    </a>
+                    ]
                 </div>
             </div>
             <div className="row">
-                <input
-                    id="breed-search"
-                    className='row'
-                    type='text'
-                    value={searchInput}
-                    onChange={handleInput}
-                />
+                <div className="col pe-0">
+                    <input
+                        id="breed-search"
+                        className='row'
+                        type='text'
+                        value={searchInput}
+                        onChange={handleInput}
+                    />
+                </div>
             </div>
         </form>
     )

@@ -29,10 +29,13 @@ function DogBreeds({ breeds, setDogBreed, reloadToggle, setReloadToggle }) {
                             : breed
 
                         return (
-                            <li key={index}>
-                                <a role="button" onClick={() => handleClick([breed, subBreed])}>
-                                    [{name}]
-                                </a>
+                            <li key={index} className="fs-3">[
+                                <a
+                                    className="text-decoration-underline"
+                                    role="button"
+                                    onClick={() => handleClick([breed, subBreed])}>
+                                    {name}
+                                </a>]
                                 &nbsp;
                             </li>
                         )
@@ -41,15 +44,17 @@ function DogBreeds({ breeds, setDogBreed, reloadToggle, setReloadToggle }) {
             )
         } else {
             return (
-                <li>[no results]</li>
+                <li className="fs-3">[<span className="text-danger">no search results</span>]</li>
             )
         }
     }
 
     return (
-        <ul id='local-search-results'>
-            {breedsOut()}
-        </ul>
+        <div id="local-search-results">
+            <ul>
+                {breedsOut()}
+            </ul>
+        </div >
     )
 }
 
