@@ -13,7 +13,7 @@ import LOCALIZATION from './constants/en_default';
 function App() {
 
     const [searchOutput, setSearchOutput] = useState([])
-    const [dogBreed, setDogBreed] = useState(['random', []])
+    const [dogBreed, setDogBreed] = useState([LOCALIZATION.APP.WORD_RANDOM, []])
     // Set toggles to apply refreshing of components from children components
     const [resetToggle, setResetToggle] = useState(true)
     const [reloadToggle, setReloadToggle] = useState(true)
@@ -21,7 +21,7 @@ function App() {
     useEffect(() => { resetSearch() }, [resetToggle])
 
     const resetSearch = () => {
-        setDogBreed(['random', []])
+        setDogBreed([LOCALIZATION.APP.WORD_RANDOM, []])
         setSearchOutput([])
     }
 

@@ -5,7 +5,8 @@
 
 const LOCALIZATION = {
     APP: {
-        IMAGE_HEADING: dogBreed => `Click the image for a new picture of a ${dogBreed} dog...`
+        IMAGE_HEADING: dogBreed => `Click the image for a new ${dogBreed} picture from dog.ceo...`,
+        WORD_RANDOM: 'random'
     },
     BREED_SEARCH: {
         FETCH_ERROR: 'Breed list fetch error:'
