@@ -10,7 +10,7 @@ View random images from database or filtered by breed and sub-breed.
 
 ## Installation
 
-$ npm init react-app .
+$ npm install
 
 ## Usage
 
