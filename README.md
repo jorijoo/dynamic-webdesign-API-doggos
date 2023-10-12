@@ -21,7 +21,6 @@ $ npm start
 - [Alcometer assignment for "Dynaaminen Verkkosivu" course in Oulu University of Applied Sciences](https://github.com/jorijoo/dynamic-webdesign-alcometer)
 
 - [The API hosted at dog.ceo](https://github.com/ElliottLandsborough/dog-ceo-api)
-Explain which projects with similar functionality already exist and in which cases your project is a better solution.
 - [The internet's biggest collection of open source dog pictures.](https://dog.ceo/dog-api/)
 
 ## Credits
